@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="./style.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ga+Maamli&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ga+Maamli&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="background">
+      <video autoplay muted loop id="elaina">
+        <source src="./gif/elainaa.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <div class="tempat">
+        <div class="kata">
+          <div class="awal">
+            <img src="./source/WhatsApp Image 2024-07-08 at 11.55.23.jpeg" />
+            <h2>cek khodam</h2>
+          </div>
+          <div class="aku">
+          <input type="text" id="nameInput" placeholder="Nama masbro...">
+          <button onclick="cekKhodam()"><p>Cek Khodam</p></button>
+          <div class="loader" id="loader"></div>
+          <div id="result" class="result" style="display: none;">
+              <h2 id="khodamName"></h2>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+    <script>
+        const khodams = [
+        { name: "Harimau Putih" },
+        { name: "Anggrek Mekar Pontianak" },
+        { name: "Mike Tyson" },
+        { name: "Tuyul Mulet" },
+        { name: "Sigit Rendang" },
+        { name: "Willie Salin" },
+        { name: "Bumbu Kacang Khas Kebumen" },
+        { name: "Pocong Bersepeda" },
+        { name: "Jin Susu Kental Manis" },
+        { name: "Rehan Tiger" },
+        { name: "Belatung Bangka Belitung" },
+        { name: "Nasi Cumi Pak Kris" },
+        { name: "Onic Kairi" },
+        { name: "Kai Cenat" },
+        { name: "Bokong Setiawan" },
+        { name: "Allahuakbar Lutpiii" },
+        { name: "Uwoooogh Kiboyy" },
+        { name: "Pemain HOK" },
+        { name: "Mas Anies" },
+        { name: "Raja Iblis" },
+        { name: "Windah Batubara" },
+        { name: "Mbappe" },
+        { name: "Femboy Bandung" },
+        { name: "Handoko Susanoo" },
+        { name: "Dimas Cahyo" },
+        { name: "Frontal Gaming" },
+        { name: "Sigma" },
+        { name: "Gen Alpha" },
+        { name: "Biang Kerok" },
+        { name: "Ipank Jabrix" },
+        { name: "User Starlink" },
+        { name: "Rizal Ekonomi" },
+        { name: "Rusdi Barber" },
+        { name: "Jojo Bizzare Adventure" },
+        { name: "Ketua JMK48" },
+        { name: "Wolly Wong Hai" },
+        { name: "Admin" },
+        { name: "Windah Habatusauda" },
+        { name: "Windah Batu-Bata" },
+        { name: "Penumpang Angkot" },
+        { name: "Sesepuh Batak" },
+        { name: "Penunggu Medan" },
+        { name: "Pendaki Hideung" },
+        { name: "Pendaki Hideung" },
+{ name: "Alomani Oke Gas" },
+{ name: "Alomani Hideung" },
+{ name: "Frankowo" },
+{ name: "Anggrek Mekar Ngawi" },
+{ name: "Pendekar Sakti" },
+{ name: "Ruslan Bogor" },
+{ name: "Dimas Anggrek" },
+{ name: "FF*hengkerWibuTzy" },
+{ name: "El Wota" },
+{ name: "Wibu Kaneki Ken" },
+{ name: "Pakdhe Telolet" },
+{ name: "Sigma Skibidi" },
+{ name: "Sachi Roblox" },
+{ name: "Pakde Buas" },
+{ name: "Legenda Herex Surakarta" },
+
+ ];
+
+        function pickRandom(list) {
+            return list[Math.floor(Math.random() * list.length)];
+        }
+
+        function cekKhodam() {
+            const nameInput = document.getElementById('nameInput').value;
+            if (!nameInput) {
+                alert('Masukkan Namamu!');
+                return;
+            }
+
+            document.getElementById('loader').style.display = 'block';
+            setTimeout(() => {
+                const khodam = pickRandom(khodams);
+                document.getElementById('khodamName').innerText = `Khodam: ${khodam.name}`;
+                document.getElementById('result').style.display = 'block';
+                document.getElementById('loader').style.display = 'none';
+            }, 2000);
+        }
+    </script>
+
+</body>
+</html>
+
+    
