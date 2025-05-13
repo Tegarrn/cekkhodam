@@ -18,108 +18,174 @@
         <source src="./gif/elainaa.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
-      <div class="tempat">
-        <div class="kata">
-          <div class="awal">
-            <img src="./source/393e039b81e1ae9bee7f5-removebg-preview.png" / style="width: 20vh;">
-            <h2>cek khodam</h2>
+      <div class="container">
+        <div class="mystic-particles" id="particles"></div>
+        <div class="content">
+          <div class="header">
+            <img src="./source/393e039b81e1ae9bee7f5-removebg-preview.png" class="logo" alt="Khodam Logo">
+            <h1 class="title">Cek Khodam</h1>
+            <p class="subtitle">Temukan pendamping spiritualmu</p>
           </div>
-          <div class="aku">
-          <input type="text" id="nameInput" placeholder="Nama masbro...">
-          <button onclick="cekKhodam()"><p>Cek Khodam</p></button>
+          
+          <div class="form-group">
+            <div class="input-container">
+              <input type="text" id="nameInput" class="input" placeholder="Masukkan namamu...">
+            </div>
+            <button id="checkButton" class="btn" onclick="cekKhodam()">Cek Khodam</button>
+          </div>
+          
           <div class="loader" id="loader"></div>
-          <div id="result" class="result" style="display: none;">
-              <h2 id="khodamName"></h2>
+          
+          <div id="result" class="result">
+            <h3 class="khodam-title">Khodammu adalah:</h3>
+            <h2 id="khodamName" class="khodam-name"></h2>
+            <p id="khodamDesc" class="khodam-description"></p>
           </div>
-        </div>
         </div>
       </div>
     </div>
+    
     <script>
-        const khodams = [
-        { name: "Harimau Putih" },
-        { name: "Anggrek Mekar Pontianak" },
-        { name: "Mike Tyson" },
-        { name: "Tuyul Mulet" },
-        { name: "Sigit Rendang" },
-        { name: "Willie Salin" },
-        { name: "Bumbu Kacang Khas Kebumen" },
-        { name: "Pocong Bersepeda" },
-        { name: "Jin Susu Kental Manis" },
-        { name: "Rehan Tiger" },
-        { name: "Belatung Bangka Belitung" },
-        { name: "Nasi Cumi Pak Kris" },
-        { name: "Onic Kairi" },
-        { name: "Kai Cenat" },
-        { name: "Bokong Setiawan" },
-        { name: "Allahuakbar Lutpiii" },
-        { name: "Uwoooogh Kiboyy" },
-        { name: "Pemain HOK" },
-        { name: "Mas Anies" },
-        { name: "Raja Iblis" },
-        { name: "Windah Batubara" },
-        { name: "Mbappe" },
-        { name: "Femboy Bandung" },
-        { name: "Handoko Susanoo" },
-        { name: "Dimas Cahyo" },
-        { name: "Frontal Gaming" },
-        { name: "Sigma" },
-        { name: "Gen Alpha" },
-        { name: "Biang Kerok" },
-        { name: "Ipank Jabrix" },
-        { name: "User Starlink" },
-        { name: "Rizal Ekonomi" },
-        { name: "Rusdi Barber" },
-        { name: "Jojo Bizzare Adventure" },
-        { name: "Ketua JMK48" },
-        { name: "Wolly Wong Hai" },
-        { name: "Admin" },
-        { name: "Windah Habatusauda" },
-        { name: "Windah Batu-Bata" },
-        { name: "Penumpang Angkot" },
-        { name: "Sesepuh Batak" },
-        { name: "Penunggu Medan" },
-        { name: "Pendaki Hideung" },
-        { name: "Pendaki Hideung" },
-{ name: "Alomani Oke Gas" },
-{ name: "Alomani Hideung" },
-{ name: "Frankowo" },
-{ name: "Anggrek Mekar Ngawi" },
-{ name: "Pendekar Sakti" },
-{ name: "Ruslan Bogor" },
-{ name: "Dimas Anggrek" },
-{ name: "FF*hengkerWibuTzy" },
-{ name: "El Wota" },
-{ name: "Wibu Kaneki Ken" },
-{ name: "Pakdhe Telolet" },
-{ name: "Sigma Skibidi" },
-{ name: "Sachi Roblox" },
-{ name: "Pakde Buas" },
-{ name: "Legenda Herex Surakarta" },
+      const khodams = [
+        { name: "Harimau Putih", desc: "Khodam pelindung dengan kekuatan fisik yang luar biasa dan keberanian tanpa batas." },
+        { name: "Anggrek Mekar Pontianak", desc: "Membawa keindahan dan ketenangan dalam hidupmu, tetapi jangan pernah menyakitinya." },
+        { name: "Mike Tyson", desc: "Memberikan kekuatan dan ketahanan dalam menghadapi lawan-lawanmu di kehidupan." },
+        { name: "Tuyul Mulet", desc: "Khodam kecil yang lincah dan suka membantu urusan keuanganmu dengan caranya sendiri." },
+        { name: "Sigit Rendang", desc: "Membawa kelezatan dan kehangatan dalam hidupmu, seperti rendang yang semakin nikmat seiring waktu." },
+        { name: "Willie Salin", desc: "Membantumu dalam urusan kreatif dan seni, memberikan inspirasi di saat-saat sulit." },
+        { name: "Bumbu Kacang Khas Kebumen", desc: "Menambah cita rasa dalam hidupmu, membuatmu disukai banyak orang." },
+        { name: "Pocong Bersepeda", desc: "Khodam unik yang membantumu bergerak cepat dan efisien menuju tujuanmu." },
+        { name: "Jin Susu Kental Manis", desc: "Membawa kemanisan dalam hidupmu dan membuatmu dicintai oleh orang di sekitarmu." },
+        { name: "Rehan Tiger", desc: "Memberikan keberanian dan determinasi tinggi dalam mengejar mimpi-mimpimu." },
+        { name: "Belatung Bangka Belitung", desc: "Khodam transformasi yang mengubah hal buruk menjadi sesuatu yang bermanfaat." },
+        { name: "Nasi Cumi Pak Kris", desc: "Memberimu energi dan stamina ekstra untuk menjalani hari-harimu." },
+        { name: "Onic Kairi", desc: "Khodam strategi yang membantu mengambil keputusan tepat di saat-saat kritis." },
+        { name: "Kai Cenat", desc: "Membawa kegembiraan dan tawa dalam hidupmu, mengusir kesedihan." },
+        { name: "Bokong Setiawan", desc: "Khodam pendukung yang selalu ada di belakangmu, mendorongmu maju." },
+        { name: "Allahuakbar Lutpiii", desc: "Membawa kedamaian spiritual dan ketenangan batin dalam hidupmu." },
+        { name: "Uwoooogh Kiboyy", desc: "Khodam energik yang memberikan semangat luar biasa saat kau membutuhkannya." },
+        { name: "Pemain HOK", desc: "Membantumu dalam urusan koordinasi tim dan kerja sama dengan orang lain." },
+        { name: "Mas Anies", desc: "Khodam diplomasi yang membantumu berkata-kata dengan bijak dan meyakinkan." },
+        { name: "Raja Iblis", desc: "Memberikan keberanian untuk melawan ketidakadilan dan ketakutanmu sendiri." },
+        { name: "Windah Batubara", desc: "Khodam entertainer yang membantumu melihat sisi humoris dari setiap masalah." },
+        { name: "Mbappe", desc: "Memberimu kecepatan dan kelincahan dalam menghadapi berbagai situasi hidup." },
+        { name: "Femboy Bandung", desc: "Khodam yang membantumu mengekspresikan diri dengan bebas dan tanpa rasa takut." },
+        { name: "Handoko Susanoo", desc: "Memberikan perlindungan spiritual dan kekuatan dalam menghadapi badai kehidupan." },
+        { name: "Dimas Cahyo", desc: "Membawa pencerahan dan wawasan baru dalam setiap permasalahan hidupmu." },
+        { name: "Frontal Gaming", desc: "Khodam yang membuatmu berani menghadapi masalah secara langsung tanpa ragu." },
+        { name: "Sigma", desc: "Membantumu menjadi versi terbaik dari dirimu, mandiri dan penuh keyakinan." },
+        { name: "Gen Alpha", desc: "Khodam inovasi yang membantumu beradaptasi dengan perubahan zaman." },
+        { name: "Biang Kerok", desc: "Membantumu menemukan akar masalah dan menyelesaikannya dari sumbernya." },
+        { name: "Ipank Jabrix", desc: "Khodam petualang yang membantumu menikmati setiap momen kehidupan." },
+        { name: "User Starlink", desc: "Memberimu koneksi dengan energi kosmik dan pemikiran yang lebih luas." },
+        { name: "Rizal Ekonomi", desc: "Khodam yang membantumu dalam urusan keuangan dan investasi masa depan." },
+        { name: "Rusdi Barber", desc: "Membantumu memotong hal-hal negatif dalam hidupmu dan tampil lebih baik." },
+        { name: "Jojo Bizzare Adventure", desc: "Khodam petualang yang membawa kejutan dan keajaiban dalam hidupmu." },
+        { name: "Ketua JMK48", desc: "Memberimu kemampuan kepemimpinan dan koordinasi kelompok." },
+        { name: "Wolly Wong Hai", desc: "Khodam internasional yang membantumu beradaptasi dengan berbagai budaya." },
+        { name: "Admin", desc: "Memberikan kontrol penuh atas hidupmu dan kemampuan mengelola berbagai situasi." },
+        { name: "Windah Habatusauda", desc: "Khodam penyembuh yang menjaga kesehatanmu dan memberi energi positif." },
+        { name: "Windah Batu-Bata", desc: "Memberimu ketahanan dan kekuatan untuk membangun fondasi hidupmu." },
+        { name: "Penumpang Angkot", desc: "Khodam sederhana yang mengajarkan pentingnya perjalanan, bukan hanya tujuan." },
+        { name: "Sesepuh Batak", desc: "Membawa kebijaksanaan leluhur dan kekuatan karakter dalam hidupmu." },
+        { name: "Penunggu Medan", desc: "Khodam pelindung teritorial yang menjaga wilayahmu dari energi negatif." },
+        { name: "Pendaki Hideung", desc: "Membantumu mencapai puncak-puncak tertinggi dalam hidupmu." },
+        { name: "Alomani Oke Gas", desc: "Khodam yang memberikan dorongan energi saat kau membutuhkannya paling banyak." },
+        { name: "Alomani Hideung", desc: "Membawa misteri dan ketajaman intuisi dalam hidupmu." },
+        { name: "Frankowo", desc: "Khodam yang membantumu berbicara dengan jujur dan terus terang." },
+        { name: "Anggrek Mekar Ngawi", desc: "Membawa keindahan dan kelembutan dalam setiap aspek kehidupanmu." },
+        { name: "Pendekar Sakti", desc: "Khodam pelindung dengan kemampuan bela diri spiritual tingkat tinggi." },
+        { name: "Ruslan Bogor", desc: "Membawa kesejukan dan ketenangan pikiran dalam hidupmu." },
+        { name: "Dimas Anggrek", desc: "Khodam yang menumbuhkan keindahan di tempat-tempat tak terduga." },
+        { name: "FF*hengkerWibuTzy", desc: "Membantumu dalam urusan teknologi dan dunia virtual." },
+        { name: "El Wota", desc: "Khodam penggemar sejati yang mengajarkan dedikasi dan loyalitas." },
+        { name: "Wibu Kaneki Ken", desc: "Memberimu ketahanan dan kemampuan regenerasi dalam menghadapi kesulitan." },
+        { name: "Pakdhe Telolet", desc: "Khodam pembawa peringatan dan tanda dalam hidupmu." },
+        { name: "Sigma Skibidi", desc: "Membantumu bergerak dengan ritme kehidupanmu sendiri, tidak ikut arus." },
+        { name: "Sachi Roblox", desc: "Khodam kreatif yang membantumu membangun duniamu sendiri." },
+        { name: "Pakde Buas", desc: "Memberikan perlindungan dan kekuatan dalam menghadapi ancaman." },
+        { name: "Legenda Herex Surakarta", desc: "Khodam legendaris dengan pengetahuan kuno dan kekuatan mistis." }
+      ];
 
- ];
+      function pickRandom(list) {
+        return list[Math.floor(Math.random() * list.length)];
+      }
 
-        function pickRandom(list) {
-            return list[Math.floor(Math.random() * list.length)];
+      function createParticles() {
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 30; i++) {
+          const particle = document.createElement('div');
+          particle.classList.add('particle');
+          
+          // Random position
+          const posX = Math.random() * 100;
+          const posY = Math.random() * 100;
+          
+          // Random size
+          const size = Math.random() * 5 + 2;
+          
+          // Random animation delay
+          const delay = Math.random() * 5;
+          
+          // Random color variations of red/orange
+          const hue = Math.floor(Math.random() * 30) + 0; // 0-30 for red to orange
+          const color = `hsl(${hue}, 100%, 60%)`;
+          
+          particle.style.left = `${posX}%`;
+          particle.style.bottom = `${posY}%`;
+          particle.style.width = `${size}px`;
+          particle.style.height = `${size}px`;
+          particle.style.animationDelay = `${delay}s`;
+          particle.style.background = color;
+          
+          particlesContainer.appendChild(particle);
+        }
+      }
+
+      function cekKhodam() {
+        const nameInput = document.getElementById('nameInput').value;
+        if (!nameInput) {
+          alert('Masukkan namamu dulu!');
+          return;
         }
 
-        function cekKhodam() {
-            const nameInput = document.getElementById('nameInput').value;
-            if (!nameInput) {
-                alert('Masukkan Namamu!');
-                return;
-            }
+        // Hide result if showing
+        document.getElementById('result').classList.remove('show');
+        
+        // Show loader
+        document.getElementById('loader').style.display = 'block';
+        
+        // Disable button
+        document.getElementById('checkButton').disabled = true;
+        
+        // Create more particles for the ritual effect
+        createParticles();
+        
+        setTimeout(() => {
+          const selectedKhodam = pickRandom(khodams);
+          document.getElementById('khodamName').innerText = selectedKhodam.name;
+          document.getElementById('khodamDesc').innerText = selectedKhodam.desc;
+          
+          // Hide loader
+          document.getElementById('loader').style.display = 'none';
+          
+          // Show result with animation
+          document.getElementById('result').classList.add('show');
+          
+          // Re-enable button
+          document.getElementById('checkButton').disabled = false;
+        }, 3000);
+      }
 
-            document.getElementById('loader').style.display = 'block';
-            setTimeout(() => {
-                const khodam = pickRandom(khodams);
-                document.getElementById('khodamName').innerText = `Khodam: ${khodam.name}`;
-                document.getElementById('result').style.display = 'block';
-                document.getElementById('loader').style.display = 'none';
-            }, 2000);
-        }
+      // Initialize particles on load
+      window.addEventListener('load', createParticles);
+      
+      // Input field animation
+      const inputField = document.getElementById('nameInput');
+      inputField.addEventListener('focus', () => {
+        createParticles(); // Create more particles when focusing on input
+      });
     </script>
-
 </body>
 </html>
 
